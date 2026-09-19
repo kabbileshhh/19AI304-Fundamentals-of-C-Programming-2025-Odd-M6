@@ -33,7 +33,22 @@ To develop a C program using the static storage class in a function with a param
 ### Step 8:
   Stop
 # Program:
+```
+#include <stdio.h>
+void display(int n){
+    static float base=100.25;
+    printf("%.2f  ",base+n);
+    base+=100.25;
+}
+int main(){
+    int x; scanf("%d",&x);
+    for(int i=0;i<5;i++) display(x);
+    return 0;
+}
+```
 # Output:
+<img width="533" height="86" alt="Screenshot 2026-07-22 141751" src="https://github.com/user-attachments/assets/7a332fac-f548-4cb0-9a7c-80cfe9dfe7ee" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -79,7 +94,30 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 11:
   Stop
 # Program:
+```
+#include <stdio.h>
+int add(int a,int b){return a+b;}
+int sub(int a,int b){return a-b;}
+int mul(int a,int b){return a*b;}
+int divi(int a,int b){return a/b;}
+int main(){
+    int a,b,ch; scanf("%d%d",&a,&b);
+    scanf("%d",&ch);
+    int (*op)(int,int);
+    switch(ch){
+        case 1: op=add; break;
+        case 2: op=sub; break;
+        case 3: op=mul; break;
+        case 4: if(b==0){printf("Error"); return 0;} op=divi; break;
+        default: printf("Invalid"); return 0;
+    }
+    printf("Result=%d\n",op(a,b));
+    return 0;
+}
+```
 # Output:
+<img width="201" height="146" alt="Screenshot 2026-07-22 141821" src="https://github.com/user-attachments/assets/40b0630e-6f6f-4856-9d5a-7c8c325e4c3b" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -123,7 +161,25 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 10:
   Stop
 # Program:
+```
+#include <stdio.h>
+struct emp{int eno; char name[20]; float sal;};
+int main(){
+    int n; scanf("%d",&n);
+    struct emp e[n]; float high=0;
+    for(int i=0;i<n;i++){
+        scanf("%d %s %f",&e[i].eno,e[i].name,&e[i].sal);
+        if(e[i].sal>high) high=e[i].sal;
+    }
+    printf("Highest Salary Employees:\n");
+    for(int i=0;i<n;i++) if(e[i].sal==high)
+        printf("%d %s %.2f\n",e[i].eno,e[i].name,e[i].sal);
+    return 0;
+}
+```
 # Output:
+<img width="345" height="217" alt="Screenshot 2026-07-22 141853" src="https://github.com/user-attachments/assets/360b22a0-1159-40b6-af10-3ebfaf4f987b" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -166,7 +222,29 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 9:
   Stop
 # Program:
+```
+#include <stdio.h>
+struct date{int c_d,c_m,c_y,b_d,b_m,b_y,a_d,a_m,a_y;};
+void findAge(struct date *d){
+    int month[]={31,28,31,30,31,30,31,31,30,31,30,31};
+    if(d->b_d>d->c_d){ d->c_d+=month[d->c_m-2]; d->c_m--; }
+    if(d->b_m>d->c_m){ d->c_y--; d->c_m+=12; }
+    d->a_d=d->c_d-d->b_d;
+    d->a_m=d->c_m-d->b_m;
+    d->a_y=d->c_y-d->b_y;
+}
+int main(){
+    struct date d;
+    scanf("%d %d %d",&d.c_d,&d.c_m,&d.c_y);
+    scanf("%d %d %d",&d.b_d,&d.b_m,&d.b_y);
+    findAge(&d);
+    printf("Age: %d Years %d Months %d Days\n",d.a_y,d.a_m,d.a_d);
+    return 0;
+}
+```
 # Output:
+<img width="422" height="148" alt="Screenshot 2026-07-22 141944" src="https://github.com/user-attachments/assets/7141cc5a-321c-4d8c-879f-0c5e6c5dcd54" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -202,8 +280,19 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 10:
   Stop
 # Program:
+```
+#include <stdio.h>
+union abc{int a; char b;};
+int main(){
+    union abc var,*ptr; ptr=&var;
+    var.a=90;
+    printf("Integer=%d\n",ptr->a);
+    printf("Character=%c\n",ptr->a);
+    return 0;
+}
+```
 # Output:
+<img width="195" height="97" alt="Screenshot 2026-07-22 142013" src="https://github.com/user-attachments/assets/909e8222-dfc7-4c7b-ac3e-69f25dee6477" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
-
-
